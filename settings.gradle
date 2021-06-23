@@ -1,3 +1,4 @@
+include ':departments_list'
 include ':db'
 include ':network'
 include ':navigation'
