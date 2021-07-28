@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_departments_list"
+    app:startDestination="@id/departmentsListFragment">
+
+    <fragment
+        android:id="@+id/departmentsListFragment"
+        android:name="com.pogerapp.departments_list.DepartmentsListFragment"
+        android:label="fragment_departments_list"
+        tools:layout="@layout/fragment_departments_list" />
+</navigation>

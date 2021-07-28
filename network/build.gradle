@@ -48,7 +48,7 @@ dependencies {
     implementation kotlinStd
     implementation network
     implementation rootProject.ext.hilt
-    annotationProcessor hiltKapt
+    kapt hiltKapt
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

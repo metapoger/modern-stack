@@ -39,7 +39,7 @@ dependencies {
 
     implementation kotlinStd
     implementation room
-    annotationProcessor roomKapt
+    kapt roomKapt
     implementation rootProject.ext.hilt
     kapt hiltKapt
 

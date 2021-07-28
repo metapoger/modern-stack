@@ -11,8 +11,7 @@ import javax.inject.Inject
 class DataStorage @Inject constructor(
     private val userDao: UserDao,
     private val departmentDao: DepartmentDao
-) : UserDataStorage,
-    DepartmentsDataStorage {
+) : DataStorageRepository {
 
     override suspend fun addUser(user: User) {
         userDao.insert(UserModel.fromEntity(user))
@@ -26,7 +25,7 @@ class DataStorage @Inject constructor(
         }
     }
 
-    override suspend fun getUsers(): List<User> {
+    override suspend fun getUsers(): List<User>? {
         return userDao.getAll().map {
             it.toEntity()
         }
@@ -40,10 +39,10 @@ class DataStorage @Inject constructor(
         departmentDao.addAll(departments.map { DepartmentModel.fromEntity(it) })
     }
 
-    override suspend fun getDepartments(): List<Department> {
+    override suspend fun getDepartments(): List<Department>? {
         return departmentDao.getDepartments()?.map {
             it.toEntity()
-        } ?: ArrayList()
+        }
     }
 
     override suspend fun clearDepartments() {

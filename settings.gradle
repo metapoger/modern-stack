@@ -5,3 +5,5 @@ include ':navigation'
 include ':core'
 include ':app'
 rootProject.name = "ModernStackSampleApp"
+include ':users_list'
+include ':user_details'

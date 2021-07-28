@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/nav_departments_list">
+
+    <include
+        android:id="@+id/nav_departments_list"
+        app:graph="@navigation/nav_departments_list" />
+
+    <include
+        android:id="@+id/nav_users_list"
+        app:graph="@navigation/nav_users_list" />
+
+    <action
+        android:id="@+id/action_global_to_users_list"
+        app:destination="@+id/nav_users_list">
+        <argument
+            android:name="departmentId"
+            android:defaultValue="-1"
+            app:argType="integer"
+            app:nullable="false" />
+    </action>
+
+    <include
+        android:id="@+id/nav_user_details"
+        app:graph="@navigation/nav_user_details" />
+
+    <action android:id="@+id/action_global_to_user_details"
+        app:destination="@+id/nav_user_details">
+        <argument
+            android:defaultValue="-1"
+            app:nullable="false"
+            android:name="userId"
+            app:argType="integer"/>
+    </action>
+
+
+</navigation>

@@ -1,14 +1,16 @@
 package com.pogerapp.network.di
 
+import android.content.Context
 import com.pogerapp.network.BuildConfig
+import com.pogerapp.network.DataRepository
 import com.pogerapp.network.RestClient
-import com.pogerapp.network.UsersRepository
+import com.pogerapp.network.RestClientImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import okhttp3.OkHttp
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -41,7 +43,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRestClient(client: OkHttpClient) = Retrofit.Builder()
+    fun provideRestClient(restClient: RestClient): RestClientImpl {
+        return RestClientImpl(restClient)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofitClient(client: OkHttpClient) = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
@@ -50,7 +58,8 @@ class NetworkModule {
 }
 
 @Module
+@InstallIn(ApplicationComponent::class)
 abstract class NetworkBindings{
     @Binds
-    abstract fun bindRestClientToUsersRepo(restClient: RestClient): UsersRepository
+    abstract fun bindRestClientToUsersRepo(restClient: RestClientImpl): DataRepository
 }

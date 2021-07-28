@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.pogerapp.db.DataStorage
 import com.pogerapp.db.Database
-import com.pogerapp.db.DepartmentsDataStorage
-import com.pogerapp.db.UserDataStorage
+import com.pogerapp.db.DataStorageRepository
 import com.pogerapp.db.dao.DepartmentDao
 import com.pogerapp.db.dao.UserDao
 import dagger.Binds
@@ -47,9 +46,5 @@ class DatabaseModules {
 abstract class DataStorageBindings{
     @Binds
     @Singleton
-    abstract fun bindToUserDataStorage(dataStorage: DataStorage): UserDataStorage
-
-    @Binds
-    @Singleton
-    abstract fun bindToDepartmentsDataStorage(dataStorage: DataStorage): DepartmentsDataStorage
+    abstract fun bindToDataStorage(dataStorage: DataStorage): DataStorageRepository
 }
