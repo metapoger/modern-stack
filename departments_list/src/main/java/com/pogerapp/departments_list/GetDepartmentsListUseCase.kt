@@ -15,6 +15,7 @@ class GetDepartmentsListUseCase @Inject constructor(
 ) {
     suspend operator fun invoke()  = withContext(dispatcher){
         val result = dataRepository.obtainData()
+        dataStorageRepository.clearAll()
         if(result.isSuccess()){
             dataStorageRepository.addAllUsers(result.success?:ArrayList())
         }

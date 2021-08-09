@@ -3,16 +3,16 @@ package com.pogerapp.departments_list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pogerapp.core.entity.user.Department
+import com.pogerapp.core.entity.user.Specialty
 import com.pogerapp.departments_list.databinding.DepartmentItemViewBinding
 
 class DepartmentsListAdapter(
     private val onClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val departments = ArrayList<Department>()
+    private val departments = ArrayList<Specialty>()
 
-    fun setData(items: List<Department>) {
+    fun setData(items: List<Specialty>) {
         departments.clear()
         departments.addAll(items)
         notifyDataSetChanged()
@@ -27,7 +27,7 @@ class DepartmentsListAdapter(
         return DepartmentViewHolder(binding).apply {
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
-                    onClick(departments[adapterPosition].departmentId)
+                    onClick(departments[adapterPosition].specialtyId)
                 }
             }
         }
@@ -42,8 +42,8 @@ class DepartmentsListAdapter(
     class DepartmentViewHolder(
         private val departmentViewBinding: DepartmentItemViewBinding
     ) : RecyclerView.ViewHolder(departmentViewBinding.root) {
-        fun bind(department: Department) {
-            departmentViewBinding.title.text = department.name
+        fun bind(specialty: Specialty) {
+            departmentViewBinding.title.text = specialty.name
         }
     }
 }

@@ -6,12 +6,12 @@ import androidx.room.Junction
 import androidx.room.Relation
 
 @Entity
-class DepartmentWithUsers(
-    @Embedded val department: DepartmentModel,
+class SpecialtyWithUsers(
+    @Embedded val specialty: SpecialtyModel,
     @Relation(
-        parentColumn = "departmentId",
+        parentColumn = "specialtyId",
         entityColumn = "uid",
-        associateBy = Junction(UserDepartmentCrossRef::class)
+        associateBy = Junction(UserSpecialtyCrossRef::class)
     )
     val users: List<UserModel>
 )

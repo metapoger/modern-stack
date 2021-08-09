@@ -1,16 +1,18 @@
 package com.pogerapp.db.dao
 
 import androidx.room.*
-import com.pogerapp.db.models.DepartmentModel
+import com.pogerapp.db.models.SpecialtyModel
 
 @Dao
-interface DepartmentDao {
+interface SpecialtyDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addAll(departments: List<DepartmentModel>?)
+    suspend fun insert(specialty: SpecialtyModel)
 
-    @Query("SELECT * FROM DepartmentModel")
-    suspend fun getDepartments(): List<DepartmentModel>?
 
-    @Delete
-    suspend fun clear()
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addAll(specialties: List<SpecialtyModel>?)
+
+    @Query("SELECT * FROM SpecialtyModel")
+    suspend fun getDepartments(): List<SpecialtyModel>?
 }

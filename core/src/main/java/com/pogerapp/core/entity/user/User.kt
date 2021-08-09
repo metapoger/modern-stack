@@ -2,9 +2,12 @@ package com.pogerapp.core.entity.user
 
 import com.google.gson.annotations.SerializedName
 import java.util.*
-import kotlin.collections.ArrayList
 
 data class User(
+
+    @SerializedName("uid")
+    var uid: Int,
+
     @SerializedName("f_name")
     val firstName: String?,
 
@@ -12,11 +15,11 @@ data class User(
     val lastName: String?,
 
     @SerializedName("birthday")
-    val birthday: Date?,
+    val birthday: String?,
 
     @SerializedName("avatr_url")
     val avatar: String?,
 
-    @SerializedName("department")
-    val departments: List<Department>?
+    @SerializedName("specialty")
+    val specialties: List<Specialty>?
 )

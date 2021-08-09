@@ -8,7 +8,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -32,7 +33,7 @@ ext.coroutines = [
 ]
 
 ext.kotlinSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0"
-ext.navComp = "androidx.navigation:navigation-fragment-ktx:2.3.0"
+ext.navComp = "androidx.navigation:navigation-fragment-ktx:2.3.5"
 
 ext.gson = "com.google.code.gson:gson:2.8.6"
 
@@ -51,15 +52,9 @@ ext.fragment = [
         "androidx.fragment:fragment-ktx:$FRAGMENT_VERSION"
 ]
 
-ext.HILT_VERSION = "2.28-alpha"
-ext.hilt = [
-        "com.google.dagger:hilt-android:$HILT_VERSION",
-        "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
-]
-ext.hiltKapt = [
-        "com.google.dagger:hilt-android-compiler:$HILT_VERSION",
-        "androidx.hilt:hilt-compiler:1.0.0-alpha02"
-]
+ext.HILT_VERSION = "2.38"
+ext.hilt = "com.google.dagger:hilt-android:$HILT_VERSION"
+ext.hiltKapt =  "com.google.dagger:hilt-android-compiler:$HILT_VERSION"
 
 ext.ROOM_VERSION = "2.3.0"
 ext.room = [
@@ -73,6 +68,9 @@ ext.GLIDE_VERSION = "4.11.0"
 ext.glide = "com.github.bumptech.glide:glide:$GLIDE_VERSION"
 ext.glideProcessor = "com.github.bumptech.glide:compiler:$GLIDE_VERSION"
 
+ext.navigationArgsPath = '/build/generated/source/navigation-args'
+ext.injectorNavigation = "${project(':app').projectDir.path}$navigationArgsPath"
+ext.navigationPath = "${project(':navigation').projectDir.path}$navigationArgsPath"
 
 task clean(type: Delete) {
     delete rootProject.buildDir

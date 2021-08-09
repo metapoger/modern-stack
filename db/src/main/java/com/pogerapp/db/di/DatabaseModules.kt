@@ -2,21 +2,23 @@ package com.pogerapp.db.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.pogerapp.db.DataStorage
 import com.pogerapp.db.Database
 import com.pogerapp.db.DataStorageRepository
-import com.pogerapp.db.dao.DepartmentDao
+import com.pogerapp.db.dao.SpecialtyDao
 import com.pogerapp.db.dao.UserDao
+import com.pogerapp.db.dao.UserWithSpecialtyDao
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class DatabaseModules {
     @Provides
     @Singleton
@@ -30,19 +32,13 @@ class DatabaseModules {
 
     @Provides
     @Singleton
-    fun provideUserDao(database: Database) = database.userDao()
-
-    @Provides
-    @Singleton
-    fun provideDepartmentsDao(database: Database) = database.departmentDao()
-
-    @Provides
-    @Singleton
-    fun provideDataStorage(userDao: UserDao, departmentDao: DepartmentDao) = DataStorage(userDao, departmentDao)
+    fun provideDataStorage(
+        roomDatabase: Database
+    ) = DataStorage(roomDatabase)
 }
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class DataStorageBindings{
     @Binds
     @Singleton

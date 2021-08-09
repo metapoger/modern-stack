@@ -9,5 +9,11 @@
         android:id="@+id/departmentsListFragment"
         android:name="com.pogerapp.departments_list.DepartmentsListFragment"
         android:label="fragment_departments_list"
-        tools:layout="@layout/fragment_departments_list" />
+        tools:layout="@layout/fragment_departments_list">
+        <argument
+            android:name="departmentId"
+            android:defaultValue="-1"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
 </navigation>

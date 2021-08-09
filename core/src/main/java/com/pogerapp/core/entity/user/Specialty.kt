@@ -2,9 +2,9 @@ package com.pogerapp.core.entity.user
 
 import com.google.gson.annotations.SerializedName
 
-data class Department(
-    @SerializedName("department_id")
-    val departmentId: Int,
+data class Specialty(
+    @SerializedName("specialty_id")
+    val specialtyId: Int,
 
     @SerializedName("name")
     val name: String

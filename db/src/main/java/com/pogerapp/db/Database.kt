@@ -2,13 +2,17 @@ package com.pogerapp.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.pogerapp.db.dao.DepartmentDao
+import androidx.room.TypeConverters
+import com.pogerapp.db.dao.SpecialtyDao
 import com.pogerapp.db.dao.UserDao
-import com.pogerapp.db.models.DepartmentModel
+import com.pogerapp.db.dao.UserWithSpecialtyDao
+import com.pogerapp.db.models.SpecialtyModel
 import com.pogerapp.db.models.UserModel
+import com.pogerapp.db.models.UserSpecialtyCrossRef
 
-@Database(entities = [UserModel::class, DepartmentModel::class], version = 1)
+@Database(entities = [UserModel::class, SpecialtyModel::class, UserSpecialtyCrossRef::class], version = 1, exportSchema = true)
 abstract class Database: RoomDatabase() {
     abstract fun userDao(): UserDao
-    abstract fun departmentDao(): DepartmentDao
+    abstract fun specialtyDao(): SpecialtyDao
+    abstract fun userWithSpecialtyDao(): UserWithSpecialtyDao
 }

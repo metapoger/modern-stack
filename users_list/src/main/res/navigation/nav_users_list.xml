@@ -2,12 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/users_list"
+    android:id="@+id/nav_users_list"
     app:startDestination="@id/usersListFragment">
 
     <fragment
         android:id="@+id/usersListFragment"
         android:name="com.pogerapp.users_list.UsersListFragment"
         android:label="fragment_users_list"
-        tools:layout="@layout/fragment_users_list" />
+        tools:layout="@layout/fragment_users_list" >
+        <argument
+            android:defaultValue="-1"
+            app:nullable="false"
+            android:name="departmentId"
+            app:argType="integer"/>
+    </fragment>
 </navigation>

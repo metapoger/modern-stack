@@ -1,6 +1,7 @@
 package com.pogerapp.network.di
 
 import android.content.Context
+import com.google.gson.GsonBuilder
 import com.pogerapp.network.BuildConfig
 import com.pogerapp.network.DataRepository
 import com.pogerapp.network.RestClient
@@ -9,8 +10,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,8 +24,9 @@ private const val TIMEOUT_READ_SECONDS = 15L
 private const val TIMEOUT_WRITE_SECONDS = 15L
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class NetworkModule {
+
     @Provides
     @Singleton
     fun provideLoggingInterceptor() = HttpLoggingInterceptor().apply {
@@ -58,7 +60,7 @@ class NetworkModule {
 }
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class NetworkBindings{
     @Binds
     abstract fun bindRestClientToUsersRepo(restClient: RestClientImpl): DataRepository

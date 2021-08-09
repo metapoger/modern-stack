@@ -14,6 +14,7 @@ suspend fun <T> handleError(block: suspend () -> Response<NetworkResponse<T>>): 
             CoreResponse(error = NullPointerException("Couldn't get response"))
         }
     } catch (ex: Exception) {
+        ex.printStackTrace()
         CoreResponse(error = ex)
     }
 }

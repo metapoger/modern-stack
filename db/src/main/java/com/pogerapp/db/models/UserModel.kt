@@ -3,15 +3,12 @@ package com.pogerapp.db.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.Relation
-import com.pogerapp.core.entity.user.Department
 import com.pogerapp.core.entity.user.User
 import java.util.*
-import kotlin.collections.ArrayList
 
 @Entity
 class UserModel (
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val uid: Int = 0,
 
     @ColumnInfo(name = "f_name")
@@ -21,13 +18,14 @@ class UserModel (
     val lastName: String?,
 
     @ColumnInfo(name = "birthday")
-    val birthday: Date?,
+    val birthday: String?,
 
     @ColumnInfo(name = "avatr_url")
     val avatar: String?
 ) {
     companion object{
         fun fromEntity(user: User) = UserModel(
+            uid = user.uid,
             firstName = user.firstName,
             lastName = user.lastName,
             birthday = user.birthday,

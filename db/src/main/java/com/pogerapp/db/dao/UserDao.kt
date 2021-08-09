@@ -1,9 +1,8 @@
 package com.pogerapp.db.dao
 
 import androidx.room.*
-import com.pogerapp.core.entity.user.User
 import com.pogerapp.db.models.UserModel
-import com.pogerapp.db.models.UserWithDepartments
+import com.pogerapp.db.models.UserWithSpecialty
 
 @Dao
 interface UserDao {
@@ -13,12 +12,9 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @Transaction
-    suspend fun insertAll(user: List<User>)
+    suspend fun insertAll(user: List<UserModel>)
 
     @Query("SELECT * FROM UserModel")
-    suspend fun getAll(): List<UserWithDepartments>
+    suspend fun getAll(): List<UserWithSpecialty>
 
-    @Delete
-    @Transaction
-    suspend fun clear()
 }
